@@ -1,4 +1,4 @@
-import './employee-list-item.css';
+import './employees-list-item.css';
 
 const EmployeesListItem = () => {
    return (

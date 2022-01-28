@@ -4,12 +4,14 @@ import EmployeesListItem from '../employeеs-list-item/employees-list-item'
 const EmployeesList = ({data, onDelete}) => {
 
     const elements = data.map(item => {  
-        const {id, ...itemProps} = item;     
+        const {id, ...itemProps} = item;
+
         return (
         <EmployeesListItem 
                key={id}
                {...itemProps}
-               onDelete = {() => onDelete(id)}/>
+               onDelete = {() => onDelete(id)}
+               />
         )
     })
         return (

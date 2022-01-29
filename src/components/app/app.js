@@ -70,6 +70,10 @@ class App extends Component {
         })
     }
 
+    onUpdateSearh = (term) => {
+        this.setState({term});
+    }
+
     render() {
         const {data, term} = this.state;
         const amountEmployees = this.state.data.length;
@@ -82,7 +86,7 @@ class App extends Component {
                amount = {amountEmployees}
                increased = {increased}/>
             <div className='search-panel'>
-                <SeachPanel/>
+                <SeachPanel onUpdateSearh={this.onUpdateSearh}/>
                 <AppFilter/>
                 
             </div>

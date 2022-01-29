@@ -38,12 +38,14 @@ class App extends Component {
             rise: false,
             id : this.maxId++
         };
-        
-        this.setState(({data}) => {
-          return {
-                data: [...data, newUser]               
-            }                           
-        }) 
+
+        if(name.length > 1 && salary){       
+            this.setState(({data}) => {
+            return {
+                    data: [...data, newUser]               
+                }                           
+            }) 
+       }
     } 
 
     onToggleProp = (id, prop) => {

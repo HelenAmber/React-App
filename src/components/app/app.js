@@ -13,9 +13,9 @@ class App extends Component {
         super(props);
         this.state = {
             data : [
-                {name: 'Yurii', salary: 1500, increase: false, id: 1},
-                {name: 'Peter', salary: 1000, increase: true, id: 2},
-                {name: 'Stepan', salary: 750, increase: false, id: 3}
+                {name: 'Yurii', salary: 1500, increase: false, rise: true, id: 1},
+                {name: 'Peter', salary: 1000, increase: true, rise: false, id: 2},
+                {name: 'Stepan', salary: 750, increase: false, rise: false, id: 3}
             ]
         };
         this.maxId = 4;
@@ -30,29 +30,46 @@ class App extends Component {
     }
 
     addItem = (name, salary) => {
-        console.log(name);
-        console.log(salary);
-
+        
         const newUser = {
             name: name,
             salary: salary,
             increase: false,
+            rise: false,
             id : this.maxId++
         };
-
-        console.log(newUser);
         
         this.setState(({data}) => {
           return {
                 data: [...data, newUser]               
             }                           
         }) 
+    } 
+
+    onToggleIncrease = (id) => {
+        this.setState(({data}) => ({
+           data: data.map(item => {
+              if(item.id === id){
+                  return {...item, increase: !item.increase }
+              }
+              return item;
+           })
+        }))
+    }
+
+    onToggleRise = (id) =>{
+        console.log(`Rise this ${id}`);
     }
 
     render() {
+        const amountEmployees = this.state.data.length;
+        const increased = this.state.data.filter(item => item.increase).length;
+
         return (
             <div className="app">
-            <AppInfo/>
+            <AppInfo
+               amount = {amountEmployees}
+               increased = {increased}/>
             <div className='search-panel'>
                 <SeachPanel/>
                 <AppFilter/>
@@ -61,6 +78,8 @@ class App extends Component {
             <EmployeesList 
                 data={this.state.data}
                 onDelete={this.deleteItem}
+                onToggleIncrease={this.onToggleIncrease}
+                onToggleRise={this.onToggleRise}
                 />
             <EmployeesAddForm
                 onAdd ={this.addItem}

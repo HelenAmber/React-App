@@ -1,9 +1,25 @@
 import './app-filter.css'
 
 const AppFilter = () => {
+    const buttonsData = [
+      {name: 'all', label: 'Все сотрудники'},
+      {name: 'rise', label: 'На повышение'},
+      {name: 'moreThen1000', label: 'Зп больше 1000$'}
+    ];
+
+    const buttons = buttonsData.map(({name, label}) => {
+        return (
+          <button className="btn btn-light"
+                      type="button"
+                      key={name}>                    
+                        {label}
+              </button>
+        )
+    });
    
     return (
           <div className="btn-group">
+              {buttons}
               <button className="btn btn-light"
                       type="button"
                       >                    

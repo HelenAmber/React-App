@@ -18,7 +18,7 @@ class App extends Component {
                 {name: 'Stepan', salary: 750, increase: false, rise: false, id: 3}
             ],
             term: '',
-            filter: 'rise'
+            filter: 'all'
         };
         this.maxId = 4;
     }
@@ -100,9 +100,7 @@ class App extends Component {
             <div className='search-panel'>
                 <SeachPanel onUpdateSearh={this.onUpdateSearh}/>
                 <AppFilter 
-                  onRiseSearch={this.onRiseSearch}
-                  bigSalary={this.bigSalary}
-                  data={this.state.data}
+                  filter={filter}
                   />                
             </div>
             <EmployeesList 

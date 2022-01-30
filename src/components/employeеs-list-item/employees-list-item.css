@@ -1,5 +1,6 @@
 .list-group-item {
     padding: 15px 20px;
+    background-color: rgb(230, 233, 233);
     border-bottom: 1px solid #3d5a80;
 }
 
@@ -15,6 +16,7 @@
 }
 
 .list-group-item input {
+    background-color: rgb(223, 224, 224);
     line-height: 35px;
     font-size: 20px;
     text-align: center;

@@ -90,6 +90,21 @@ class App extends Component {
         this.setState({filter});
     }
 
+    changeSalary = (id, newSalary) => { 
+        newSalary = +newSalary;       
+        if(newSalary){       
+            this.setState(({data}) => ({
+                data: data.map(item => {
+                   if(item.id === id){
+                       return {...item, salary: newSalary }
+                   }
+                   return item;
+                 })
+              })
+            )
+        } 
+    }
+
     render() {
         const {data, term, filter} = this.state;
         const amountEmployees = this.state.data.length;
@@ -98,24 +113,23 @@ class App extends Component {
 
         return (
             <div className="app">
-            <AppInfo
-               amount = {amountEmployees}
-               increased = {increased}/>
+                <AppInfo
+                    amount = {amountEmployees}
+                    increased = {increased}/>
             <div className='search-panel'>
-                <SeachPanel onUpdateSearh={this.onUpdateSearh}/>
+                <SeachPanel 
+                    onUpdateSearh={this.onUpdateSearh}/>
                 <AppFilter 
-                  filter={filter}
-                  onFilterSelect={this.onFilterSelect}
-                  />                
+                    filter={filter}
+                    onFilterSelect={this.onFilterSelect}/>                
             </div>
-            <EmployeesList 
-                data={visibleData}
-                onDelete={this.deleteItem}
-                onToggleProp={this.onToggleProp}
-                />
-            <EmployeesAddForm
-                onAdd ={this.addItem}
-                />
+                <EmployeesList 
+                    data={visibleData}
+                    onDelete={this.deleteItem}
+                    onToggleProp={this.onToggleProp}
+                    changeSalary={this.changeSalary}/>
+                <EmployeesAddForm
+                    onAdd ={this.addItem}/>
             </div>
         );
     }
